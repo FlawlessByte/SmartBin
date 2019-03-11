@@ -3,6 +3,7 @@
     package="co.realinventor.smartbin">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,6 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".AdminMod.ViewStatusActivity"></activity>
+        <activity android:name=".AdminMod.ViewComplaintActivity" />
+        <activity android:name=".AdminMod.AdminLoggedActivity" />
+        <activity android:name=".UserMod.ComplaintActivity" />
+        <activity android:name=".UserMod.CostActivity" />
+        <activity android:name=".UserMod.StatusActivity" />
+        <activity android:name=".UserMod.UserDetailsActivity" />
+        <activity android:name=".UserMod.UserLoggedActivity" />
+        <activity android:name=".UserMod.UserSignUpActivity" />
+        <activity android:name=".UserMod.UserLoginActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

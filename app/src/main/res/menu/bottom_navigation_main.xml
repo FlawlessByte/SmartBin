@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_bin"
+        android:enabled="true"
+        android:icon="@drawable/bin_24dp"
+        android:title="Waste Bin"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_msg"
+        android:enabled="true"
+        android:icon="@drawable/msg_24dp"
+        android:title="Message"
+        app:showAsAction="ifRoom" />
+</menu>
