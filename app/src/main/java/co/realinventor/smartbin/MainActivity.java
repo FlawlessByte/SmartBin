@@ -2,6 +2,7 @@ package co.realinventor.smartbin;
 
 import androidx.appcompat.app.AppCompatActivity;
 import co.realinventor.smartbin.AdminMod.AdminLoggedActivity;
+import co.realinventor.smartbin.AdminMod.AdminLoginActivity;
 import co.realinventor.smartbin.UserMod.UserLoginActivity;
 
 import android.content.Intent;
@@ -24,6 +25,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void adminModeSelected(View view){
-        startActivity(new Intent(this, AdminLoggedActivity.class));
+        startActivity(new Intent(this, AdminLoginActivity.class));
     }
 }

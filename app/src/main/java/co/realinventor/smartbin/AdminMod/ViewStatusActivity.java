@@ -28,6 +28,7 @@ public class ViewStatusActivity extends AppCompatActivity {
     private DatabaseReference statusRef;
     private MaterialButton button;
     private ProgressBar progressBar;
+    private long cost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,7 @@ public class ViewStatusActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Bin bin = dataSnapshot.getValue(Bin.class);
+                cost = bin.getAmount();
                 if(bin != null){
                     progressBar.setVisibility(View.INVISIBLE);
                 }
@@ -82,6 +84,7 @@ public class ViewStatusActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
                     Toast.makeText(ViewStatusActivity.this, "The collection message has been sent to user!", Toast.LENGTH_SHORT).show();
                     clearTheBin();
+                    updatePrice();
                     finish();
                 }
                 else{
@@ -95,5 +98,10 @@ public class ViewStatusActivity extends AppCompatActivity {
 
     private void clearTheBin(){
         //clear the users bin value to false
+    }
+
+    private void updatePrice(){
+        cost += 25;
+        statusRef.child("001").child("amount").setValue(cost);
     }
 }

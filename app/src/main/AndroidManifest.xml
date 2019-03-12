@@ -11,7 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AdminMod.ViewStatusActivity"></activity>
+        <activity android:name=".AdminMod.AdminLoginActivity"></activity>
+        <activity android:name=".SplashScreen"
+            android:theme="@style/FullScreenMode">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".AdminMod.ViewStatusActivity" />
         <activity android:name=".AdminMod.ViewComplaintActivity" />
         <activity android:name=".AdminMod.AdminLoggedActivity" />
         <activity android:name=".UserMod.ComplaintActivity" />
@@ -21,13 +30,7 @@
         <activity android:name=".UserMod.UserLoggedActivity" />
         <activity android:name=".UserMod.UserSignUpActivity" />
         <activity android:name=".UserMod.UserLoginActivity" />
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>
