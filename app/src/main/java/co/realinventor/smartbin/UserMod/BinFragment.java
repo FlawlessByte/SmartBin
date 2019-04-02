@@ -96,7 +96,7 @@ public class BinFragment extends Fragment {
                     //No bin assigned
                     progressBar.setVisibility(View.GONE);
                     textViewStatus.setText("You have no bin associated with this account! Please contact Admin!");
-                    imageViewStatus.setImageResource(R.drawable.trash_full);
+                    imageViewStatus.setVisibility(View.INVISIBLE);
                 }
 
             }

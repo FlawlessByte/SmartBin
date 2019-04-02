@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import co.realinventor.smartbin.Common.Bin;
 import co.realinventor.smartbin.R;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -51,8 +52,12 @@ public class CostActivity extends AppCompatActivity {
                 }
                 else{
                     textViewCost.setVisibility(View.VISIBLE);
-                    textView.setVisibility(View.INVISIBLE);
+                    textView.setText("Oops!");
+                    textView.setTextSize(22);
                     textViewCost.setText("You have no bin associated with this account! Please contact admin.");
+                    textViewCost.setTextColor(Color.GRAY);
+                    textViewCost.setTextSize(18);
+                    progressBarCost.setVisibility(View.INVISIBLE);
                 }
 
             }

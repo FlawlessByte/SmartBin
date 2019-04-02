@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,11 +21,19 @@ public class UserLoggedActivity extends AppCompatActivity {
     private DatabaseReference ref;
     private String uid;
     private String bin_id;
+    private MaterialButton statusButton, complaintButton, costButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_logged);
+
+        statusButton = findViewById(R.id.statusButton);
+        costButton = findViewById(R.id.costButton);
+        complaintButton = findViewById(R.id.complaintButton);
+        statusButton.setEnabled(false);
+        costButton.setEnabled(false);
+        complaintButton.setEnabled(false);
 
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -34,6 +43,9 @@ public class UserLoggedActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
                 bin_id = user.getBin_id();
+                statusButton.setEnabled(true);
+                costButton.setEnabled(true);
+                complaintButton.setEnabled(true);
             }
 
             @Override

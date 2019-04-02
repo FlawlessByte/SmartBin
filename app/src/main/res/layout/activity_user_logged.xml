@@ -20,6 +20,7 @@
         <com.google.android.material.button.MaterialButton
             android:layout_height="150dp"
             android:layout_width="150dp"
+            android:id="@+id/statusButton"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_margin="8dp"
             android:onClick="statusSelected"
@@ -28,6 +29,7 @@
         <com.google.android.material.button.MaterialButton
             android:layout_height="150dp"
             android:layout_width="150dp"
+            android:id="@+id/complaintButton"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_margin="8dp"
             android:onClick="complaintSelected"
@@ -36,6 +38,7 @@
         <com.google.android.material.button.MaterialButton
             android:layout_height="150dp"
             android:layout_width="150dp"
+            android:id="@+id/costButton"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_margin="8dp"
             android:onClick="costSelected"

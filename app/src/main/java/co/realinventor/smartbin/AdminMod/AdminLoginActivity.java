@@ -34,7 +34,7 @@ public class AdminLoginActivity extends AppCompatActivity {
         adminLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(adminEmailInput.getText().toString().equals("admin") && adminPasswordInput.getText().toString().equals("admin@trashcrush")){
+                if(adminEmailInput.getText().toString().equals("admin@trashcrush") && adminPasswordInput.getText().toString().equals("admin")){
                     startActivity(new Intent(AdminLoginActivity.this, AdminLoggedActivity.class));
                     AdminLoginActivity.this.finish();
                 }
