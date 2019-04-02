@@ -71,6 +71,22 @@
                 android:inputType="phone"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutBin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hintAnimationEnabled="true"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:hint="Bin ID"
+            android:layout_marginBottom="10dp"
+            android:layout_below="@id/textInputLayoutPhone">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textInputUserBin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"
             style="@style/Widget.MaterialComponents.Button"
@@ -78,7 +94,7 @@
             android:text="Sign Up"
             android:layout_centerInParent="true"
             android:onClick="userSignUpButtonClicked"
-            android:layout_below="@+id/textInputLayoutPhone"/>
+            android:layout_below="@+id/textInputLayoutBin"/>
 
     </RelativeLayout>
 

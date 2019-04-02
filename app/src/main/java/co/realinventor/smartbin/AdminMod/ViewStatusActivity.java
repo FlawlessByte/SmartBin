@@ -78,7 +78,7 @@ public class ViewStatusActivity extends AppCompatActivity {
 
     public void acceptButtonClicked(View view){
         //Send collection msg
-        new CollectionMessage().makeCollectionMsg("Your garbage collection will be done today!").addOnCompleteListener(new OnCompleteListener() {
+        new CollectionMessage().makeCollectionMsg("Your garbage collection will be done today!", "001").addOnCompleteListener(new OnCompleteListener() {
             @Override
             public void onComplete(@NonNull Task task) {
                 if(task.isSuccessful()){

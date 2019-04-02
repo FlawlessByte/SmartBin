@@ -1,7 +1,7 @@
 package co.realinventor.smartbin.UserMod;
 
 public class User {
-    public String uid, name, address, phone, bin, bill;
+    public String uid, name, address, phone, bin, bill, bin_id;
 
     public User() {
     }
@@ -52,5 +52,13 @@ public class User {
 
     public void setBin(String bin) {
         this.bin = bin;
+    }
+
+    public String getBin_id() {
+        return bin_id;
+    }
+
+    public void setBin_id(String bin_id) {
+        this.bin_id = bin_id;
     }
 }

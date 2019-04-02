@@ -36,6 +36,7 @@ public class BinFragment extends Fragment {
     private TextView textViewStatus;
     private ImageView imageViewStatus;
     private DatabaseReference statusRef;
+    private String bin_id = "";
 
     public BinFragment() {
         // Required empty public constructor
@@ -57,6 +58,11 @@ public class BinFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        Bundle bundle = this.getArguments();
+        if(bundle != null){
+            bin_id = bundle.getString("bin_id");
+        }
+
         View view = inflater.inflate(R.layout.fragment_bin, container, false);
 
         textViewStatus = view.findViewById(R.id.textViewStatus);
@@ -67,22 +73,32 @@ public class BinFragment extends Fragment {
         final ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
         textViewStatus.setText("Please wait!");
 
-        statusRef.child("001").addValueEventListener(new ValueEventListener() {
+        statusRef.child(bin_id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Bin bin = dataSnapshot.getValue(Bin.class);
                 if(bin != null){
                     imageViewStatus.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.GONE);
-                }
-                if(bin.getStat()){
-                    textViewStatus.setText("Your bin \nis \nfull");
-                    imageViewStatus.setImageResource(R.drawable.trash_full);
+
+                    if(bin.getStat()){
+                        textViewStatus.setText("Your bin \nis \nfull");
+                        imageViewStatus.setImageResource(R.drawable.trash_full);
+                    }
+                    else{
+                        textViewStatus.setText("Your bin \nis \nNot Full");
+                        imageViewStatus.setImageResource(R.drawable.trash_not_full);
+                    }
+
+
                 }
                 else{
-                    textViewStatus.setText("Your bin \nis \nNot Full");
-                    imageViewStatus.setImageResource(R.drawable.trash_not_full);
+                    //No bin assigned
+                    progressBar.setVisibility(View.GONE);
+                    textViewStatus.setText("You have no bin associated with this account! Please contact Admin!");
+                    imageViewStatus.setImageResource(R.drawable.trash_full);
                 }
+
             }
 
             @Override

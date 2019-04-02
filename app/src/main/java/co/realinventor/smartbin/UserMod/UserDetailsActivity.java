@@ -20,8 +20,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class UserDetailsActivity extends AppCompatActivity {
-    private TextInputEditText textInputUserPhone, textInputUserAddress, textInputUserName;
-    private String name, address, phone, uid;
+    private TextInputEditText textInputUserPhone, textInputUserAddress, textInputUserName, textInputUserBin;
+    private String name, address, phone, uid, bin_id;
     private DatabaseReference ref;
 
     @Override
@@ -32,6 +32,7 @@ public class UserDetailsActivity extends AppCompatActivity {
         textInputUserAddress = findViewById(R.id.textInputUserAddress);
         textInputUserName = findViewById(R.id.textInputUserName);
         textInputUserPhone = findViewById(R.id.textInputUserPhone);
+        textInputUserBin = findViewById(R.id.textInputUserBin);
 
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         ref = FirebaseDatabase.getInstance().getReference();
@@ -43,6 +44,7 @@ public class UserDetailsActivity extends AppCompatActivity {
         name = textInputUserName.getText().toString();
         address = textInputUserAddress.getText().toString();
         phone = textInputUserPhone.getText().toString();
+        bin_id = textInputUserBin.getText().toString();
 
         if((TextUtils.isEmpty(name) || TextUtils.isEmpty(address) || TextUtils.isEmpty(phone))){
             Toast.makeText(this, "Fill all the fields and try again!", Toast.LENGTH_SHORT).show();
@@ -55,6 +57,10 @@ public class UserDetailsActivity extends AppCompatActivity {
             user.setPhone(phone);
             user.setBin("not full");
             user.setBill("");
+            if(TextUtils.isEmpty(bin_id))
+                user.setBin_id("-111");
+            else
+                user.setBin_id(bin_id);
 
 
             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()

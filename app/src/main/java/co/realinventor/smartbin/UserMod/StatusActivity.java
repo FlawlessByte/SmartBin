@@ -27,14 +27,18 @@ public class StatusActivity extends AppCompatActivity {
 
     private RelativeLayout msgLayout, binLayout;
     private BottomNavigationView bottomNavigationView;
-    private DatabaseReference statusRef;
     private TextView textViewStatus;
     private ImageView imageViewStatus;
+    private String bin_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_status);
+
+
+        bin_id = getIntent().getStringExtra("bin_id");
+
 
         Fragment fragment = new BinFragment();
         loadFragment(fragment);
@@ -65,6 +69,10 @@ public class StatusActivity extends AppCompatActivity {
     }
 
     private void loadFragment(Fragment fragment){
+        Bundle bundle = new Bundle();
+        bundle.putString("bin_id",bin_id);
+        fragment.setArguments(bundle);
+
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_container, fragment);
         transaction.addToBackStack(null);

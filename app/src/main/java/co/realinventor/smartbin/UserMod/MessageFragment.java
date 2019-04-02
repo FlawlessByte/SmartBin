@@ -35,6 +35,7 @@ public class MessageFragment extends Fragment {
     private List<CollectionMessage> collectionMessageList = new ArrayList<>();
     private RecyclerView recyclerView;
     private CollectionMessageAdapter mAdapter;
+    private String bin_id;
 
     public MessageFragment() {
         // Required empty public constructor
@@ -53,6 +54,13 @@ public class MessageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        Bundle bundle = this.getArguments();
+        if(bundle != null){
+            bin_id = bundle.getString("bin_id");
+        }
+
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_message, container, false);
 
@@ -66,14 +74,14 @@ public class MessageFragment extends Fragment {
         recyclerView.setAdapter(mAdapter);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        Query myFeedbackQuery = mDatabase.child("collection_msgs");
+        Query myFeedbackQuery = mDatabase.child("collection_msgs").orderByChild("bin").equalTo(bin_id);
         myFeedbackQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                     // TODO: handle the post
 
-                    Log.d("FirebaseDatabase", "Got complaints");
+                    Log.d("FirebaseDatabase", "Got msgs");
                     CollectionMessage collectionMessage = postSnapshot.getValue(CollectionMessage.class);
                     collectionMessageList.add(collectionMessage);
 

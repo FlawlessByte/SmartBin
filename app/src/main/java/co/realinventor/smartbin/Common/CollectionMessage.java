@@ -10,23 +10,32 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class CollectionMessage {
-    public String unique_id, msg, time, date;
+    public String unique_id, msg, time, date, bin_id;
 
     public CollectionMessage() {
     }
 
-    public Task makeCollectionMsg(String msg){
+    public Task makeCollectionMsg(String msg, String bin_id){
         this.msg = msg;
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         this.date = df.format(Calendar.getInstance().getTime());
         df = new SimpleDateFormat("HH:mm:ss");
         this.time = df.format(Calendar.getInstance().getTime());
+        this.bin_id = bin_id;
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
         unique_id = ref.child("collection_msgs").push().getKey();
 
         return ref.child("collection_msgs").child(unique_id).setValue(this);
+    }
+
+    public String getBin_id() {
+        return bin_id;
+    }
+
+    public void setBin_id(String bin_id) {
+        this.bin_id = bin_id;
     }
 
     public String getUnique_id() {

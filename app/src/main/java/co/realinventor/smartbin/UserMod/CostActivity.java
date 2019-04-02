@@ -17,7 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class CostActivity extends AppCompatActivity {
-    private TextView textViewCost;
+    private TextView textViewCost, textView;
     private ProgressBar progressBarCost;
     private DatabaseReference statusRef;
 
@@ -26,25 +26,35 @@ public class CostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cost);
 
+        String bin_id = getIntent().getStringExtra("bin_id");
+
         textViewCost = findViewById(R.id.textViewCost);
+        textView = findViewById(R.id.textView);
         progressBarCost = findViewById(R.id.progressBarCost);
 
         statusRef = FirebaseDatabase.getInstance().getReference();
 
-        statusRef.child("001").addValueEventListener(new ValueEventListener() {
+        statusRef.child(bin_id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Bin bin = dataSnapshot.getValue(Bin.class);
                 if(bin != null){
                     progressBarCost.setVisibility(View.GONE);
                     textViewCost.setVisibility(View.VISIBLE);
-                }
-                if(bin.getStat()){
-                    textViewCost.setText("Rs. "+bin.getAmount()+"");
+
+                    if(bin.getStat()){
+                        textViewCost.setText("Rs. "+bin.getAmount()+"");
+                    }
+                    else{
+                        textViewCost.setText("Not available!");
+                    }
                 }
                 else{
-                    textViewCost.setText("Not available!");
+                    textViewCost.setVisibility(View.VISIBLE);
+                    textView.setVisibility(View.INVISIBLE);
+                    textViewCost.setText("You have no bin associated with this account! Please contact admin.");
                 }
+
             }
 
             @Override
@@ -52,5 +62,11 @@ public class CostActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
     }
 }
